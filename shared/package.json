@@ -1,0 +1,26 @@
+{
+  "name": "@zeppelin/shared",
+  "version": "0.0.1",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "test": "ava"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "ava": "^2.4.0",
+    "ts-node": "^8.4.1"
+  },
+  "ava": {
+    "compileEnhancements": false,
+    "files": [
+      "src/**/*.test.ts"
+    ],
+    "extensions": [
+      "ts"
+    ],
+    "require": [
+      "ts-node/register"
+    ]
+  }
+}

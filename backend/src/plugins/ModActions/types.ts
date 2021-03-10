@@ -1,0 +1,145 @@
+import * as t from "io-ts";
+import { tNullable, UserNotificationMethod, UserNotificationResult } from "../../utils";
+import { BasePluginType, guildCommand, guildEventListener } from "knub";
+import { GuildMutes } from "../../data/GuildMutes";
+import { GuildCases } from "../../data/GuildCases";
+import { GuildLogs } from "../../data/GuildLogs";
+import { Case } from "../../data/entities/Case";
+import { CaseArgs } from "../Cases/types";
+import { TextChannel } from "eris";
+import { GuildTempbans } from "../../data/GuildTempbans";
+import Timeout = NodeJS.Timeout;
+import { EventEmitter } from "events";
+
+export const ConfigSchema = t.type({
+  dm_on_warn: t.boolean,
+  dm_on_kick: t.boolean,
+  dm_on_ban: t.boolean,
+  message_on_warn: t.boolean,
+  message_on_kick: t.boolean,
+  message_on_ban: t.boolean,
+  message_channel: tNullable(t.string),
+  warn_message: tNullable(t.string),
+  kick_message: tNullable(t.string),
+  ban_message: tNullable(t.string),
+  tempban_message: tNullable(t.string),
+  alert_on_rejoin: t.boolean,
+  alert_channel: tNullable(t.string),
+  warn_notify_enabled: t.boolean,
+  warn_notify_threshold: t.number,
+  warn_notify_message: t.string,
+  ban_delete_message_days: t.number,
+  can_note: t.boolean,
+  can_warn: t.boolean,
+  can_mute: t.boolean,
+  can_kick: t.boolean,
+  can_ban: t.boolean,
+  can_view: t.boolean,
+  can_addcase: t.boolean,
+  can_massunban: t.boolean,
+  can_massban: t.boolean,
+  can_massmute: t.boolean,
+  can_hidecase: t.boolean,
+  can_deletecase: t.boolean,
+  can_act_as_other: t.boolean,
+  create_cases_for_manual_actions: t.boolean,
+});
+export type TConfigSchema = t.TypeOf<typeof ConfigSchema>;
+
+export interface ModActionsEvents {
+  note: (userId: string, reason?: string) => void;
+  warn: (userId: string, reason?: string) => void;
+  kick: (userId: string, reason?: string) => void;
+  ban: (userId: string, reason?: string) => void;
+  unban: (userId: string, reason?: string) => void;
+  // mute/unmute are in the Mutes plugin
+}
+
+export interface ModActionsEventEmitter extends EventEmitter {
+  on<U extends keyof ModActionsEvents>(event: U, listener: ModActionsEvents[U]): this;
+  emit<U extends keyof ModActionsEvents>(event: U, ...args: Parameters<ModActionsEvents[U]>): boolean;
+}
+
+export interface ModActionsPluginType extends BasePluginType {
+  config: TConfigSchema;
+  state: {
+    mutes: GuildMutes;
+    cases: GuildCases;
+    tempbans: GuildTempbans;
+    serverLogs: GuildLogs;
+
+    unloaded: boolean;
+    outdatedTempbansTimeout: Timeout | null;
+    ignoredEvents: IIgnoredEvent[];
+
+    events: ModActionsEventEmitter;
+  };
+}
+
+export enum IgnoredEventType {
+  Ban = 1,
+  Unban,
+  Kick,
+}
+
+export interface IIgnoredEvent {
+  type: IgnoredEventType;
+  userId: string;
+}
+
+export type WarnResult =
+  | {
+      status: "failed";
+      error: string;
+    }
+  | {
+      status: "success";
+      case: Case;
+      notifyResult: UserNotificationResult;
+    };
+
+export type KickResult =
+  | {
+      status: "failed";
+      error: string;
+    }
+  | {
+      status: "success";
+      case: Case;
+      notifyResult: UserNotificationResult;
+    };
+
+export type BanResult =
+  | {
+      status: "failed";
+      error: string;
+    }
+  | {
+      status: "success";
+      case: Case;
+      notifyResult: UserNotificationResult;
+    };
+
+export type WarnMemberNotifyRetryCallback = () => boolean | Promise<boolean>;
+
+export interface WarnOptions {
+  caseArgs?: Partial<CaseArgs> | null;
+  contactMethods?: UserNotificationMethod[] | null;
+  retryPromptChannel?: TextChannel | null;
+}
+
+export interface KickOptions {
+  caseArgs?: Partial<CaseArgs>;
+  contactMethods?: UserNotificationMethod[];
+}
+
+export interface BanOptions {
+  caseArgs?: Partial<CaseArgs>;
+  contactMethods?: UserNotificationMethod[];
+  deleteMessageDays?: number;
+}
+
+export type ModActionType = "note" | "warn" | "mute" | "unmute" | "kick" | "ban" | "unban";
+
+export const modActionsCmd = guildCommand<ModActionsPluginType>();
+export const modActionsEvt = guildEventListener<ModActionsPluginType>();

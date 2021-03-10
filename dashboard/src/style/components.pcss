@@ -1,0 +1,38 @@
+.link {
+  @apply text-blue-400;
+  @apply underline;
+
+  &:hover {
+    @apply text-blue-200;
+  }
+}
+
+.inline-code {
+  @apply inline-block;
+  @apply bg-gray-800;
+  @apply px-1;
+  @apply rounded;
+  @apply text-sm;
+}
+
+.codeblock {
+  @apply bg-gray-800;
+  @apply p-3;
+  @apply mb-4;
+  @apply rounded;
+  @apply text-sm;
+  @apply shadow-md;
+
+  & .hljs {
+    @apply bg-transparent;
+    @apply p-0;
+  }
+}
+
+.inline-icon {
+  top: 0.125rem;
+}
+
+.sr-only-when-not-focused:not(:focus-within) {
+  @apply sr-only;
+}

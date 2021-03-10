@@ -1,0 +1,11 @@
+.docs-sidebar {
+  & .router-link-active {
+    @apply underline;
+  }
+}
+
+@screen until-lg {
+  .docs-sidebar.closed:not(:focus-within) {
+      @apply sr-only;
+  }
+}

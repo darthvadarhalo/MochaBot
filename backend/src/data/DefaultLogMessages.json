@@ -1,0 +1,76 @@
+{
+  "MEMBER_NOTE": "🖊 Note added on {userMention(user)} by {userMention(mod)}",
+  "MEMBER_WARN": "⚠️ {userMention(member)} was warned by {userMention(mod)}",
+  "MEMBER_MUTE": "🔇 {userMention(user)} was muted indefinitely by {userMention(mod)}",
+  "MEMBER_TIMED_MUTE": "🔇 {userMention(user)} was muted for **{time}** by {userMention(mod)}",
+  "MEMBER_UNMUTE": "🔊 {userMention(user)} was unmuted by {userMention(mod)}",
+  "MEMBER_TIMED_UNMUTE": "🔊 {userMention(user)} was scheduled to be unmuted in **{time}** by {userMention(mod)}",
+  "MEMBER_MUTE_EXPIRED": "🔊 {userMention(member)}'s mute expired",
+  "MEMBER_KICK": "👢 {userMention(user)} was kicked by {userMention(mod)}",
+  "MEMBER_BAN": "🔨 {userMention(user)} was banned by {userMention(mod)}",
+  "MEMBER_UNBAN": "🔓 User (`{userId}`) was unbanned by {userMention(mod)}",
+  "MEMBER_FORCEBAN": "🔨 User (`{userId}`) was forcebanned by {userMention(mod)}",
+  "MEMBER_SOFTBAN": "🔨 {userMention(member)} was softbanned by {userMention(mod)}",
+  "MEMBER_JOIN": "📥 {new} {userMention(member)} joined (created {account_age} ago)",
+  "MEMBER_LEAVE": "📤 {userMention(member)} left the server",
+  "MEMBER_ROLE_ADD": "🔑 {userMention(member)}: role(s) **{roles}** added by {userMention(mod)}",
+  "MEMBER_ROLE_REMOVE": "🔑 {userMention(member)}: role(s) **{roles}** removed by {userMention(mod)}",
+  "MEMBER_ROLE_CHANGES": "🔑 {userMention(member)}: roles changed: added **{addedRoles}**, removed **{removedRoles}** by {userMention(mod)}",
+  "MEMBER_NICK_CHANGE": "✏ {userMention(member)}: nickname changed from **{oldNick}** to **{newNick}**",
+  "MEMBER_USERNAME_CHANGE": "✏ {userMention(user)}: username changed from **{oldName}** to **{newName}**",
+  "MEMBER_RESTORE": "💿 Restored {restoredData} for {userMention(member)} on rejoin",
+  "MEMBER_TIMED_BAN": "🔨 {userMention(user)} was tempbanned by {userMention(mod)} for {banTime}",
+  "MEMBER_TIMED_UNBAN": "🔓 User (`{userId}`) was automatically unbanned by {userMention(mod)} after a tempban for {banTime}",
+
+  "CHANNEL_CREATE": "🖊 Channel {channelMention(channel)} was created",
+  "CHANNEL_DELETE": "🗑 Channel {channelMention(channel)} was deleted",
+  "CHANNEL_EDIT": "✏ Channel {channelMention(channel)} was edited",
+
+  "ROLE_CREATE": "🖊 Role **{role.name}** (`{role.id}`) was created",
+  "ROLE_DELETE": "🖊 Role **{role.name}** (`{role.id}`) was deleted",
+  "ROLE_EDIT": "🖊 Role **{role.name}** (`{role.id}`) was edited",
+
+  "MESSAGE_EDIT": "✏ {userMention(user)} edited their message (`{after.id}`) in {channelMention(channel)}:\n**Before:**{messageSummary(before)}**After:**{messageSummary(after)}",
+  "MESSAGE_DELETE": "🗑 Message (`{message.id}`) from {userMention(user)} deleted in {channelMention(channel)} (originally posted at **{messageDate}**):{messageSummary(message)}",
+  "MESSAGE_DELETE_BULK": "🗑 **{count}** messages by {authorIds} deleted in {channelMention(channel)} ({archiveUrl})",
+  "MESSAGE_DELETE_BARE": "🗑 Message (`{messageId}`) deleted in {channelMention(channel)} (no more info available)",
+  "MESSAGE_DELETE_AUTO": "🗑 Auto-deleted message (`{message.id}`) from {userMention(user)} in {channelMention(channel)} (originally posted at **{messageDate}**):{messageSummary(message)}",
+
+  "VOICE_CHANNEL_JOIN": "🎙 🔵 {userMention(member)} joined **{channel.name}**",
+  "VOICE_CHANNEL_MOVE": "🎙 ↔ {userMention(member)} moved from **{oldChannel.name}** to **{newChannel.name}**",
+  "VOICE_CHANNEL_LEAVE": "🎙 🔴 {userMention(member)} left **{channel.name}**",
+  "VOICE_CHANNEL_FORCE_MOVE": "\uD83C\uDF99 ✍ {userMention(member)} was moved from **{oldChannel.name}** to **{newChannel.name}** by {userMention(mod)}",
+  "VOICE_CHANNEL_FORCE_DISCONNECT": "\uD83C\uDF99 🚫 {userMention(member)} was forcefully disconnected from **{oldChannel.name}** by {userMention(mod)}",
+
+  "COMMAND": "🤖 {userMention(member)} used command in {channelMention(channel)}:\n`{command}`",
+
+  "MESSAGE_SPAM_DETECTED": "🛑 {userMention(member)} spam detected in {channelMention(channel)}: {description} (more than {limit} in {interval}s)\n{archiveUrl}",
+  "OTHER_SPAM_DETECTED": "🛑 {userMention(member)} spam detected: {description} (more than {limit} in {interval}s)",
+  "CENSOR": "🛑 Censored message (`{message.id}`) from {userMention(user)} in {channelMention(channel)}: {reason}:\n```{messageText}```",
+  "CLEAN": "🚿 {userMention(mod)} cleaned **{count}** message(s) in {channelMention(channel)}\n{archiveUrl}",
+
+  "CASE_CREATE": "✏ {userMention(mod)} manually created new **{caseType}** case (#{caseNum})",
+  "CASE_DELETE": "✂️ **Case #{case.case_number}** was deleted by {userMention(mod)}",
+
+  "MASSUNBAN": "⚒ {userMention(mod)} mass-unbanned {count} users",
+  "MASSBAN": "⚒ {userMention(mod)} massbanned {count} users",
+  "MASSMUTE": "📢🚫 {userMention(mod)} massmuted {count} users",
+
+  "MEMBER_JOIN_WITH_PRIOR_RECORDS": "⚠ {userMention(member)} joined with prior records. Recent cases:\n{recentCaseSummary}",
+
+  "CASE_UPDATE": "✏ {userMention(mod)} updated case #{caseNumber} ({caseType}) with note:\n```{note}```",
+
+  "MEMBER_MUTE_REJOIN": "⚠ Reapplied active mute for {userMention(member)} on rejoin",
+
+  "SCHEDULED_MESSAGE": "⏰ {userMention(author)} scheduled a message to be posted to {channelMention(channel)} on {datetime}",
+  "SCHEDULED_REPEATED_MESSAGE": "⏰ {userMention(author)} scheduled a message to be posted to {channelMention(channel)} on {datetime}, repeated {repeatDetails}",
+  "REPEATED_MESSAGE": "⏰ {userMention(author)} scheduled a message to be posted to {channelMention(channel)} {repeatDetails}",
+  "POSTED_SCHEDULED_MESSAGE": "\uD83D\uDCE8 Posted scheduled message (`{messageId}`) to {channelMention(channel)} as scheduled by {userMention(author)}",
+
+  "BOT_ALERT": "⚠ **BOT ALERT:** {tmplEval(body)}",
+  "DM_FAILED": "\uD83D\uDEA7 Failed to send DM ({source}) to {userMention(user)}",
+
+  "AUTOMOD_ACTION": "\uD83E\uDD16 Automod rule **{rule}** triggered by {userMention(users)}\n{matchSummary}\nActions taken: **{actionsTaken}**",
+  "SET_ANTIRAID_USER": "⚔ {userMention(user)} set anti-raid to **{level}**",
+  "SET_ANTIRAID_AUTO": "⚔ Anti-raid automatically set to **{level}**"
+}
